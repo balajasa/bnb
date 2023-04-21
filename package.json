@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "pressr": "cross-env SSR=true vue-cli-service build",
     "ssr": "node src/server.js",
@@ -39,7 +39,11 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {},
+    "globals": {
+      "defineProps": "readonly",
+      "defineEmits": "readonly"
+    }
   },
   "browserslist": [
     "> 1%",

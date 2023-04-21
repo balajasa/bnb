@@ -30,13 +30,15 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+<script setup>
+import { ref } from 'vue'
+
+defineProps({
+  msg: String,
+})
+
+const msg = ref('Hello World!')
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
