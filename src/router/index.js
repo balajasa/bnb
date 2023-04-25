@@ -3,6 +3,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 // 1. 定义路由组件.
 // 也可以从其他文件导入
 import HelloWorld from '../components/HelloWorld.vue'
+import CompleteOrder from '../components/CompleteOrder.vue'
 import DatePicker from '../components/DatePicker.vue'
 import Lobby from '../components/Lobby.vue'
 import Country from '../components/Country.vue'
@@ -12,6 +13,7 @@ import Country from '../components/Country.vue'
 // 我们后面再讨论嵌套路由。
 const routes = [
   { path: '/hello', component: HelloWorld },
+  { path: '/completeOrder', component: CompleteOrder },
   { path: '/date', component: DatePicker },
   { path: '/lobby', component: Lobby },
   { path: '/country', component: Country },
