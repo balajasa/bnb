@@ -1,9 +1,11 @@
-import {createRouter, createWebHashHistory} from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 
 // 1. 定义路由组件.
 // 也可以从其他文件导入
 import HelloWorld from '../components/HelloWorld.vue'
 import DatePicker from '../components/DatePicker.vue'
+import Lobby from '../components/Lobby.vue'
+import Country from '../components/Country.vue'
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
@@ -11,6 +13,8 @@ import DatePicker from '../components/DatePicker.vue'
 const routes = [
   { path: '/hello', component: HelloWorld },
   { path: '/date', component: DatePicker }
+  { path: '/lobby', component: Lobby },
+  { path: '/country', component: Country },
 ]
 
 // 3. 创建路由实例并传递 `routes` 配置
@@ -18,7 +22,7 @@ const routes = [
 // 暂时保持简单
 const router = createRouter({
   // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes, // `routes: routes` 的缩写
 })
 
