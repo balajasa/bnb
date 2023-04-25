@@ -3,12 +3,14 @@ import {createRouter, createWebHistory} from 'vue-router'
 // 1. 定义路由组件.
 // 也可以从其他文件导入
 import HelloWorld from '../components/HelloWorld.vue'
+import CompleteOrder from '../components/CompleteOrder.vue'
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
 const routes = [
   { path: '/hello', component: HelloWorld },
+  { path: '/completeOrder', component: CompleteOrder },
 ]
 
 // 3. 创建路由实例并传递 `routes` 配置
