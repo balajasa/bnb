@@ -12,7 +12,7 @@ import Country from '../components/Country.vue'
 // 我们后面再讨论嵌套路由。
 const routes = [
   { path: '/hello', component: HelloWorld },
-  { path: '/date', component: DatePicker }
+  { path: '/date', component: DatePicker },
   { path: '/lobby', component: Lobby },
   { path: '/country', component: Country },
 ]
