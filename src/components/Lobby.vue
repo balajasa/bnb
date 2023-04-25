@@ -1,5 +1,6 @@
 <template>
   <div class="lobby-cards">
+    <Search />
     <LobbyCard />
     <LobbyCard />
     <LobbyCard />
@@ -12,6 +13,7 @@
 
 <script setup>
 import LobbyCard from './LobbyCard.vue'
+import Search from './Search.vue'
 // import { ref } from 'vue'
 
 defineProps({

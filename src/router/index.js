@@ -4,6 +4,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 // 也可以从其他文件导入
 import HelloWorld from '../components/HelloWorld.vue'
 import Lobby from '../components/Lobby.vue'
+import Country from '../components/Country.vue'
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
@@ -11,6 +12,7 @@ import Lobby from '../components/Lobby.vue'
 const routes = [
   { path: '/hello', component: HelloWorld },
   { path: '/lobby', component: Lobby },
+  { path: '/country', component: Country },
 ]
 
 // 3. 创建路由实例并传递 `routes` 配置
