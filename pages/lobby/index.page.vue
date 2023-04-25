@@ -25,13 +25,11 @@ defineProps({
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.lobby-cards {
-  display: flex;
-  flex-wrap: wrap;
-}
-.lobby-cards > * {
-  flex: 0 0 25%;
-}
+<style lang="sass" scoped>
+.lobby-cards
+  display: flex
+  flex-wrap: wrap
 
+  > *
+    flex: 0 0 25%
 </style>
