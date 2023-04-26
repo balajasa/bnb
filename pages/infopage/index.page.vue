@@ -12,9 +12,15 @@
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade"
   ></iframe> -->
-
+  <!-- 訂房日期、人數選擇 -->
   <BookingSelector />
-  <order-card />
+  <!-- 快速連結：房型｜旅館資訊 -->
+  <div>
+    <button>房型</button>
+    <button>旅館資訊</button>
+  </div>
+  <!-- 房型 -->
+  <RoomType />
 </template>
 
 <script>
@@ -23,12 +29,14 @@ import Carousel from "./Carousel.vue";
 import RoomTitle from "./RoomTitle.vue";
 import BookingSelector from "./BookingSelector.vue";
 import { onMounted } from "vue";
+import RoomType from "./RoomType.vue";
 export default {
   components: {
     Carousel,
     OrderCard,
     RoomTitle,
     BookingSelector,
+    RoomType,
   },
 };
 </script>
