@@ -6,7 +6,7 @@
       <div class="payment-info">
         <div class="payment-info-row">
           <label class="form-label" for="">姓名</label>
-          <input class="form-inp" type="text" placeholder="王小明">
+          <input class="form-inp" v-model="order.inp_name" type="text" placeholder="王小明">
         </div>
       </div>
       <div class="payment-info">
@@ -162,7 +162,12 @@
 </template>
 
 <script setup>
-// import { ref } from 'vue'
+import { ref } from 'vue'
+
+const order = ref({
+  inp_name: ref('')
+})
+
 
 </script>
 
