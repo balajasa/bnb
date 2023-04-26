@@ -24,9 +24,10 @@ defineProps({
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1)
   transform: translate3d(0, 0, 0)
   min-height: 56px
-  min-width: 285px
+  min-width: 350px
   align-items: center
   display: flex
+  margin: 0 auto
 
 .searchBox
   display: flex
