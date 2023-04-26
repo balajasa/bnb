@@ -4,6 +4,7 @@
   <Link href="/date">date</Link>
   <Link href="/lobby">lobby</Link>
   <Link href="/country">country</Link>
+  <Link href="/payment">payment</Link>
 
   <slot />
 
