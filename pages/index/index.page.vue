@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import Counter from './Counter.vue'
+import { ref } from "vue";
+import Counter from "./Counter.vue";
 
-const msg = ref('Hello World!')
+const msg = ref("Hello World!");
 </script>

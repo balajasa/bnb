@@ -4,6 +4,7 @@
   <Link href="/date">date</Link>
   <Link href="/lobby">lobby</Link>
   <Link href="/country">country</Link>
+  <Link href="/infopage">Info</Link>
 
   <slot />
 
@@ -20,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import Link from './Link.vue'
+import Link from "./Link.vue";
 </script>
 
 <style lang="sass">
@@ -33,7 +34,6 @@ body
 
 a
   text-decoration: none
-
 </style>
 
 <style lang="sass" scoped>
@@ -59,5 +59,4 @@ a
 .logo
   margin-top: 20px
   margin-bottom: 10px
-
 </style>
