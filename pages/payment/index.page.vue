@@ -179,7 +179,10 @@ const order = ref({
 .payment
   max-width: 600px
   padding: 10px 15px
-
+.payment-seciton
+  border: 1px solid rgb(221, 221, 221)
+  border-radius: 12px
+  padding: 10px 24px
 .payment-info
   width: 100%
 
