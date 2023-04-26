@@ -2,7 +2,7 @@
   <div class="payment">
     <!-- 訂購人資訊 -->
     <div class="payment-seciton payment-form">
-      <h2>訂購人資訊</h2>
+      <h3 class="payment-h3">訂購人資訊</h3>
       <div class="payment-info info--col2">
         <div class="payment-info-row">
           <label class="form-label" for="name">姓名</label>
@@ -30,7 +30,7 @@
 
     <!-- 入住須知 -->
     <div class="payment-seciton payment-note">
-      <h2>【露營約定】</h2>
+      <h3 class="payment-h3">【露營約定】</h3>
       <ul class="payment-note-ul">
         <li class="payment-note-li">★勿隨意升火，以維護安全。</li>
         <li class="payment-note-li">★營區電壓較低，僅提供低瓦數300瓦以下電器使用。</li>
@@ -53,7 +53,7 @@
         <li class="payment-note-li">★如您是下雨天不露營者，建議不要提前預訂營位，可於露營日當天確定天氣狀況，適合您露營再電話聯繫營區管理員訂位，以免造成營區與露營者之間的困擾。</li>
         <li class="payment-note-li">★以上規範為維護露營者之權益，請您配合，違反屢勸不聽者取消露營資格。</li>
       </ul>
-      <h2>【個別旅客訂房定型化契約】</h2>
+      <h3 class="payment-h3">【個別旅客訂房定型化契約】</h3>
       <ol class="payment-note-ol">
         <li class="payment-note-ol-li">住宿當日逢颱風或地震等不可抗拒之因素 ( 以當地縣市政府頒布狀況為準則 ) 時， 無條件退回全額訂金或保留訂金。</li>
         <li class="payment-note-ol-li">颱風改期或取消以當地或住客居住地的陸上颱風警報為主，以中央氣象局宣布為主。</li>
@@ -73,22 +73,32 @@
 
     <!-- 訂單細項 -->
     <div class="payment-seciton payment-order">
-      <h2>訂單細項</h2>
+      <h3 class="payment-h3">訂單細項</h3>
       <div class="payment-order-header">
         2023/06/21 - 2023/06/23( 3 天 2 晚 ) 2 成人, 0 孩童, 0 嬰幼兒
       </div>
       <div class="payment-order-body">
         <div class="payment-card">
           <img class="payment-card-img" src="https://static.owlting.com/booking/image/h/97d7479e-2cf9-4817-be63-09059b9900ad/images/0MF0Rtp4teMggKHGDogYscJmuQJcdVmAVC5gVGa0.jpeg" alt="">
-          <div class="payment-card-info">
-            <div class="payment-info">
+          <div class="payment-card-infoWrap">
+            <div class="payment-card-info">
               碎石區營地<br>
               官網優惠預訂價格<br>
-              x 1 間
             </div>
-            <div class="payment-info">
-              TWD 1,800 詳情<br>
-              房價已包含稅金及其他費用<br>
+            <div class="payment-card-info info--col2">
+              <span>x 1 間</span>
+              <span>TWD 1,800</span>
+            </div>
+            <div class="payment-card-info info--col2">
+              <span>+ 4 人</span>
+              <span>TWD 1,800</span>
+            </div>
+            <div class="payment-card-info info--col2">
+              <span>有夜衝</span>
+              <span>TWD -900</span>
+            </div>
+            <div class="payment-card-info info--right">
+              房價已包含稅金及其他費用<span>(詳情)</span>
             </div>
           </div>
           <div class="payment-card-cancel">
@@ -116,7 +126,7 @@
 
     <!-- 訂單總額 -->
     <div class="payment-seciton payment-price">
-      <h2>付款詳情</h2>
+      <h3 class="payment-h3">付款詳情</h3>
       <div class="payment-price-row">
         <span>房費 (房價已包含稅金及其他費用)</span>
         <span>TWD 6,100</span>
@@ -133,7 +143,7 @@
 
     <!-- 付款方式 -->
     <div class="payment-seciton payment-choice">
-      <h2>選擇付款方式</h2>
+      <h3 class="payment-h3">選擇付款方式</h3>
       <div class="payment-choice-type">
         <span class="choice-radio">O ATM</span>
         <span class="choice-radio">O 信用卡</span>
@@ -179,25 +189,61 @@ const order = ref({
 .payment
   max-width: 600px
   padding: 10px 15px
+  margin: 0 auto
 .payment-seciton
   border: 1px solid rgb(221, 221, 221)
   border-radius: 12px
-  padding: 10px 24px
+  padding: 24px
+  font-size: 15px
+  margin-bottom: 40px
 .payment-info
   width: 100%
+.payment-h3
+  font-size: 22px
+  color: #222
 
+.payment-hint
+  font-size: 13px
 // form
+.payment-info-row
+  margin-bottom: 14px
 .form-inp,
 .form-textarea
   width: 100%
+  display: inline-block
+  border-radius: 8px
+  border: 1px solid rgb(221, 221, 221)
+  padding: 6px
+  font-size: 15px
+.form-inp
+  height: 40px
 .form-label
   display: block
+  margin-bottom: 4px
+  line-height: 20px
+  color: #222222
+  font-size: 15px
+  font-weight: 600
+
+.payment-note-ul
+  list-style: none
+  padding-left: 10px
+  line-height: 26px
 
 // order
+.payment-order-header
+  border-bottom: 1px solid rgb(221, 221, 221)
+  margin-bottom: 30px
+  padding-bottom: 20px
 .payment-card-img
   width: 100%
   max-width: 100%
-
-
-
+.payment-card-infoWrap
+  margin-bottom: 40px
+.payment-card-info
+  display: flex
+  &.info--col2
+    justify-content: space-between
+  &.info--right
+    justify-content: right
 </style>
