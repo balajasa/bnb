@@ -5,6 +5,7 @@
   <Link href="/lobby">lobby</Link>
   <Link href="/country">country</Link>
   <Link href="/infopage">Info</Link>
+  <Link href="/payment">payment</Link>
 
   <slot />
 
