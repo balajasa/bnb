@@ -3,28 +3,26 @@
     <!-- 訂購人資訊 -->
     <div class="payment-seciton payment-form">
       <h2>訂購人資訊</h2>
-      <div class="payment-info">
+      <div class="payment-info info--col2">
         <div class="payment-info-row">
-          <label class="form-label" for="">姓名</label>
-          <input class="form-inp" v-model="order.inp_name" type="text" placeholder="王小明">
+          <label class="form-label" for="name">姓名</label>
+          <input class="form-inp" id="name" v-model="order.customer_name" type="text" placeholder="王小明">
+        </div>
+        <div class="payment-info-row">
+          <label class="form-label" for="tel">電話</label>
+          <input class="form-inp" v-model="order.customer_tel" id="tel" type="tel" placeholder="0910007874">
         </div>
       </div>
       <div class="payment-info">
         <div class="payment-info-row">
-          <label class="form-label" for="">電話</label>
-          <input class="form-inp" type="tel" placeholder="0910007874">
-        </div>
-      </div>
-      <div class="payment-info">
-        <div class="payment-info-row">
-          <label class="form-label" for="">Email</label>
-          <input class="form-inp" type="text">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-inp" v-model="order.customer_email" id="email" type="text">
         </div>
       </div>
       <div class="payment-info">
         <div class="payment-info-row">
           <label class="form-label" for="">特殊需求</label>
-          <textarea class="form-textarea" name="" id="" cols="30" rows="10" placeholder="如您有特殊需求，可以在此欄位註明。例如: 入住日期預計抵達時間，前往下榻處的交通方式，葷/素人數(若下榻處未供餐請忽略)"></textarea>
+          <textarea class="form-textarea" v-model="order.customer_memo" name="" id="" cols="30" rows="10" placeholder="如您有特殊需求，可以在此欄位註明。例如: 入住日期預計抵達時間，前往下榻處的交通方式，葷/素人數(若下榻處未供餐請忽略)"></textarea>
         </div>
       </div>
       <div class="payment-hint">請注意，旅宿接單並不保證達成您所提出的需求，必須視住宿現場狀況而定</div>
@@ -165,7 +163,12 @@
 import { ref } from 'vue'
 
 const order = ref({
-  inp_name: ref('')
+  customer_name: ref(''),
+  customer_tel: ref(''),
+  customer_email: ref(''),
+  customer_memo: ref(''),
+  start_date: ref(''),
+  end_date: ref('')
 })
 
 
@@ -177,11 +180,21 @@ const order = ref({
   max-width: 600px
   padding: 10px 15px
 
+.payment-info
+  width: 100%
 
+// form
+.form-inp,
+.form-textarea
+  width: 100%
+.form-label
+  display: block
 
-
+// order
 .payment-card-img
   width: 100%
   max-width: 100%
+
+
 
 </style>
