@@ -1,9 +1,7 @@
 <template>
   <div class="main-title">碎石區營地</div>
   <!-- 輪播 -->
-  <div class="temp-carousel">
-    <img :src="`./pages/infopage/pics/${data.images[0]}`">
-  </div>
+  <Carousel :data="data.images" :domain="'./pages/infopage/pics'" />
 
   <div class="basic-info">
     <div>TWD {{data.price}}起</div>
@@ -19,23 +17,24 @@
   <hr />
   <div class="detail">
     <h3>官網優惠預訂價格</h3>
-    {{data.description}}
+    <div v-html="description"></div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { XXX } from "./RoomType"
+import Carousel from "./Carousel.vue";
+import { computed, PropType } from "vue";
+import { IRoom } from "./RoomType"
 
-// const props = defineProps({
-//   data: {
-//     type: IRoom,
-//     default: null,
-//   },
-// });
-defineProps({
-  data: XXX,
-})
-
+const props = defineProps({
+  data: {
+    type: Object as PropType<IRoom>,
+    default: {},
+  },
+});
+const description = computed(() => {
+  return props.data.description.split(/\\r|\\n/g).join('<br/>')
+});
 </script>
 
 <style>
