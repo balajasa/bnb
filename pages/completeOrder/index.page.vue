@@ -48,7 +48,7 @@
       <div class="order-row">
         <div class="info-group">
           <label>剩餘尾款（ 請於現場付清 ）</label>
-          <span>TWD 0</span>
+          <span>TWD <span class="txt-money">0</span></span>
         </div>
         <div class="info-group">
           <label>待付金額</label>
@@ -77,13 +77,37 @@
           <span>aaaa@aaa.aaa</span>
         </div>
       </div>
+      <div class="info-group other-group">
+        <label>特殊需求</label>
+        <span>測試用測試用測試用測試用測試用</span>
+      </div>
     </div>
 
     <div class="room-order-title">房型訂單</div>
     <div class="form-info room-order-info">
       <div class="form-content">
         <div class="txt-title">碎石區營地</div>
-        <div class="order-detail">
+        <div class="order-content">
+          <div class="order-detail">
+              <div class="detail-title">
+                <div class="order-type">官網優惠預訂價格</div>
+                <span class="detail-date">2023-06-20</span>
+              </div>
+              <div class="">
+                <div class="detail-content">
+                  <div class="detail-group">
+                    <div>數量：</div>
+                    <div>1 間</div>
+                  </div>
+                  <div class="detail-group">
+                    <div>總價：</div>
+                    <div class="txt-amount"><span>TWD</span> 800</div>
+                  </div>
+                  <div class="detail-info">(房價已包含稅金及其他費用)</div>
+                </div>
+              </div>
+          </div>
+          <div class="order-detail">
             <div class="detail-title">
               <div class="order-type">官網優惠預訂價格</div>
               <span class="detail-date">2023-06-20</span>
@@ -101,30 +125,154 @@
                 <div class="detail-info">(房價已包含稅金及其他費用)</div>
               </div>
             </div>
+          </div>
         </div>
 
         <div class="cancellation-policy">
           <div class="policy-title">取消政策</div>
           <div class="txt-policy">個別旅客訂房定型化契約</div>
-
           <div class="list-policy">
-          1. 住宿當日逢颱風或地震等不可抗拒之因素 ( 以當地縣市政府頒布狀況為準則 ) 時， 無條件退回全額訂金或保留訂金。<br>
-          2. 颱風改期或取消以當地或住客居住地的陸上颱風警報為主，以中央氣象局宣布為主。<br>
-          3. 變更住宿日期請於14 日前通知，將為您保留訂金六個月，未於14日前通知者則無法變更住宿日期，依照消保會規定退還部分訂金處理。<br>
-          4. 取消訂房訂金退還標準：( 依據消保會規定 )<br>
-          a. 預定住宿日前14日取消訂房，可退回全部訂金<br>
-          b. 預定住宿日前10日至13日取消訂房者，可退回 70% 的訂金<br>
-          c. 預定住宿日前7日至九日取消訂房者，可退回 50% 的訂金<br>
-          d. 預定住宿日前4日至6日取消訂房者，可退回 40% 的訂金<br>
-          e. 預定住宿日前2日至3日取消訂房者，可退回 30% 的訂金<br>
-          f. 預定住宿日前1日取消訂房者，可退回 20% 的訂金<br>
-          g. 預定住宿日當天取消者，不退回訂金。<br>
+            1. 住宿當日逢颱風或地震等不可抗拒之因素 ( 以當地縣市政府頒布狀況為準則 ) 時， 無條件退回全額訂金或保留訂金。<br>
+            2. 颱風改期或取消以當地或住客居住地的陸上颱風警報為主，以中央氣象局宣布為主。<br>
+            3. 變更住宿日期請於14 日前通知，將為您保留訂金六個月，未於14日前通知者則無法變更住宿日期，依照消保會規定退還部分訂金處理。<br>
+            4. 取消訂房訂金退還標準：( 依據消保會規定 )<br>
+            a. 預定住宿日前14日取消訂房，可退回全部訂金<br>
+            b. 預定住宿日前10日至13日取消訂房者，可退回 70% 的訂金<br>
+            c. 預定住宿日前7日至九日取消訂房者，可退回 50% 的訂金<br>
+            d. 預定住宿日前4日至6日取消訂房者，可退回 40% 的訂金<br>
+            e. 預定住宿日前2日至3日取消訂房者，可退回 30% 的訂金<br>
+            f. 預定住宿日前1日取消訂房者，可退回 20% 的訂金<br>
+            g. 預定住宿日當天取消者，不退回訂金。<br>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-content">
+        <div class="txt-title">免搭帳通舖</div>
+        <div class="order-content">
+          <div class="order-detail">
+            <div class="detail-title">
+              <div class="order-type">官網優惠預訂價格</div>
+              <span class="detail-date">2023-06-20</span>
+            </div>
+            <div class="detail-content">
+              <div class="detail-group">
+                <div>數量：</div>
+                <div>1 間</div>
+              </div>
+              <div class="detail-group">
+                <div>總價：</div>
+                <div class="txt-amount"><span>TWD</span> 2000</div>
+              </div>
+              <div class="detail-info">(房價已包含稅金及其他費用)</div>
+            </div>
+          </div>
+          <div class="order-detail">
+            <div class="detail-title">
+              <div class="order-type">官網優惠預訂價格</div>
+              <span class="detail-date">2023-06-20</span>
+            </div>
+            <div class="detail-content">
+              <div class="detail-group">
+                <div>數量：</div>
+                <div>1 間</div>
+              </div>
+              <div class="detail-group">
+                <div>總價：</div>
+                <div class="txt-amount"><span>TWD</span> 800</div>
+              </div>
+              <div class="detail-info">(房價已包含稅金及其他費用)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cancellation-policy">
+          <div class="policy-title">取消政策</div>
+          <div class="txt-policy">個別旅客訂房定型化契約</div>
+          <div class="list-policy">
+            1. 住宿當日逢颱風或地震等不可抗拒之因素 ( 以當地縣市政府頒布狀況為準則 ) 時， 無條件退回全額訂金或保留訂金。<br>
+            2. 颱風改期或取消以當地或住客居住地的陸上颱風警報為主，以中央氣象局宣布為主。<br>
+            3. 變更住宿日期請於14 日前通知，將為您保留訂金六個月，未於14日前通知者則無法變更住宿日期，依照消保會規定退還部分訂金處理。<br>
+            4. 取消訂房訂金退還標準：( 依據消保會規定 )<br>
+            a. 預定住宿日前14日取消訂房，可退回全部訂金<br>
+            b. 預定住宿日前10日至13日取消訂房者，可退回 70% 的訂金<br>
+            c. 預定住宿日前7日至九日取消訂房者，可退回 50% 的訂金<br>
+            d. 預定住宿日前4日至6日取消訂房者，可退回 40% 的訂金<br>
+            e. 預定住宿日前2日至3日取消訂房者，可退回 30% 的訂金<br>
+            f. 預定住宿日前1日取消訂房者，可退回 20% 的訂金<br>
+            g. 預定住宿日當天取消者，不退回訂金。<br>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="room-order-title">加購商品</div>
+    <div class="form-info room-add-info">
+      <div class="form-content">
+        <div class="order-content">
+          <div class="add-detail">
+            <div class="add-box">
+              <div class="add-name">睡袋</div>
+              <div class="add-amount">
+                <label>總價：</label>
+                <div class="txt-amount"><span>TWD</span> 800</div>
+              </div>
+            </div>
+            <div class="add-date">
+              <div class="txt-add-date">2023-07-11</div>
+              <div class="add-num">
+                <span class="txt-add-num">1 人</span>
+                <span>TWD 200</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="add-detail">
+            <div class="add-box">
+              <div class="add-name">睡袋</div>
+              <div class="add-amount">
+                <label>總價：</label>
+                <div class="txt-amount"><span>TWD</span> 800</div>
+              </div>
+            </div>
+            <div class="add-date">
+              <div class="txt-add-date">2023-07-11</div>
+              <div class="add-num">
+                <span class="txt-add-num">1 人</span>
+                <span>TWD 200</span>
+              </div>
+            </div>
           </div>
 
         </div>
+
+        <div class="cancellation-policy">
+          <div class="policy-title">取消政策</div>
+          <div class="txt-policy">個別旅客訂房定型化契約</div>
+          <div class="list-policy">
+            1. 住宿當日逢颱風或地震等不可抗拒之因素 ( 以當地縣市政府頒布狀況為準則 ) 時， 無條件退回全額訂金或保留訂金。<br>
+            2. 颱風改期或取消以當地或住客居住地的陸上颱風警報為主，以中央氣象局宣布為主。<br>
+            3. 變更住宿日期請於14 日前通知，將為您保留訂金六個月，未於14日前通知者則無法變更住宿日期，依照消保會規定退還部分訂金處理。<br>
+            4. 取消訂房訂金退還標準：( 依據消保會規定 )<br>
+            a. 預定住宿日前14日取消訂房，可退回全部訂金<br>
+            b. 預定住宿日前10日至13日取消訂房者，可退回 70% 的訂金<br>
+            c. 預定住宿日前7日至九日取消訂房者，可退回 50% 的訂金<br>
+            d. 預定住宿日前4日至6日取消訂房者，可退回 40% 的訂金<br>
+            e. 預定住宿日前2日至3日取消訂房者，可退回 30% 的訂金<br>
+            f. 預定住宿日前1日取消訂房者，可退回 20% 的訂金<br>
+            g. 預定住宿日當天取消者，不退回訂金。<br>
+          </div>
+        </div>
       </div>
     </div>
-
 
     <div class="form-info order-info">
       <div class="form-content">
@@ -211,6 +359,10 @@
 
 .form-content
   padding: 0 24px
+  &:not(:first-child)
+    border-top: 1px solid #e9edef
+    padding-top: 24px
+
 
 
 .txt-title
@@ -229,12 +381,16 @@
   margin-bottom: 20px
   font-size: 16px
 
+.txt-remind
+  font-size: 12px
+  color: #1d1f20
+
 .txt-deposit
   font-size: 14px
 
 .txt-money
-    color: #109fc2
-    font-weight: bold
+  color: #109fc2
+  font-weight: bold
 
 
 .info-group
@@ -248,6 +404,14 @@
   span
     font-size: 14px
     color: #686e74
+    .txt-money
+      color: #109fc2
+      font-weight: bold
+
+
+.other-group
+  padding: 24px 24px 0 24px
+  border-top: 1px solid #e9edef
 
 .order-row
   display: flex
@@ -266,14 +430,24 @@
   padding: 24px 0
   font-size: 18px
 
+.order-content
+  box-shadow: 0 15px 30px -10px rgba(92,101,107,.15)
+  display: flex
+  flex-direction: column
+  margin-bottom: 16px
+  border: 1px solid #d1d7dd
+  border-top: 0
+  border-radius: 4px
+
 .order-detail
   display: flex
   justify-content: space-between
   padding: 24px 16px
-  box-shadow: 0 15px 30px -10px rgba(92,101,107,.15)
-  margin-bottom: 16px
-  border: 1px solid #d1d7dd
-  border-radius: 4px
+  border-top: 1px solid #d1d7dd
+  &:first-child
+    border-radius: 4px 4px 0
+  &:last-child
+    border-radius: 0 0 4px 4px
 
 .detail-title
   display: inline-flex
@@ -301,6 +475,56 @@
   color: #686e74
   min-width: 210px
 
+
+.add-detail
+  display: flex
+  flex-direction: column
+  // padding: 24px 16px
+  border-top: 1px solid #d1d7dd
+  &:first-child
+    border-radius: 4px 4px 0
+  &:last-child
+    border-radius: 0 0 4px 4px
+
+.add-box
+  padding: 24px 16px
+
+
+
+.add-name
+  margin-bottom: 16px
+
+.add-amount
+  display: flex
+  justify-content: flex-end
+  font-size: 14px
+  color: #686e74
+  label
+    margin-right: 32px
+    font-size: 14px
+    color: #696E77
+
+
+.add-date
+  display: flex
+  font-size: 14px
+  color: #1d1f20
+  border-top: 1px solid #d1d7dd
+  padding: 16px
+
+.txt-add-date
+  margin-right: auto
+  color: #1d1f20
+
+.add-num
+  display: flex
+  color: #1d1f20
+
+.txt-add-num
+  margin-right: 40px
+
+
+
 .txt-amount
   color: #078abc
   span
@@ -326,10 +550,15 @@
 .txt-policy
   margin-bottom: 24px
   font-size: 14px
+  color: #686e74
+
+.cancellation-policy
+  margin-bottom: 24px
 
 .policy-title
   color: #000
   margin-bottom: 24px
+  font-size: 14px
 
 .list-policy
   line-height: 24px
