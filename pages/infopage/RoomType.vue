@@ -1,32 +1,42 @@
 <template>
   <div class="main-title">碎石區營地</div>
   <!-- 輪播 -->
-  <div class="temp-carousel">(圖片預留空間)</div>
+  <div class="temp-carousel">
+    <img :src="`./pages/infopage/pics/${data.images[0]}`">
+  </div>
 
   <div class="basic-info">
-    <div>USD 30.38起</div>
+    <div>TWD {{data.price}}起</div>
     <div>床型</div>
-    <div>自備帳篷 X 1</div>
+    <div>{{data.bed}}</div>
     <div>人數限制</div>
-    <div>4人</div>
+    <div>{{data.max}}人</div>
     <div>坪數</div>
-    <div>40 平方公尺</div>
-
-    <div>床型</div>
-    <div class="">設施</div>
-    <div class="">共用花園</div>
-    <div class="">共用浴室</div>
-    <div class="">吹風機</div>
-    <div class="">洗髮精</div>
+    <div>{{data.size}}</div>
+    <div>設施</div>
+    {{data.facilities}}
   </div>
   <hr />
   <div class="detail">
     <h3>官網優惠預訂價格</h3>
-    ...
+    {{data.description}}
   </div>
 </template>
 
-<script setup></script>
+<script lang="ts" setup>
+import { XXX } from "./RoomType"
+
+// const props = defineProps({
+//   data: {
+//     type: IRoom,
+//     default: null,
+//   },
+// });
+defineProps({
+  data: XXX,
+})
+
+</script>
 
 <style>
 .main-title {

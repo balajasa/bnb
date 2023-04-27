@@ -20,7 +20,9 @@
     <button>旅館資訊</button>
   </div>
   <!-- 房型 -->
-  <RoomType />
+  <div v-for="room in rooms" :key="room.room_id">
+    <RoomType :data="room" />
+  </div>
 </template>
 
 <script>
@@ -42,19 +44,22 @@ export default {
 </script>
 
 <script setup>
-const screenWidth = 0;
-function onScreenResize() {
-  window.addEventListener("resize", () => {
-    updateScreenWidth();
-  });
-}
-function updateScreenWidth() {
-  screenWidth = window.innerWidth;
-}
+import { ref } from 'vue'
+
+let rooms = ref({})
 
 onMounted(() => {
-  // 輪播圖片適應寬度
-  onScreenResize();
+  const url = "http://35.221.193.60/mock/153/api/room/1651127002029101056";
+  fetch(url, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      rooms.value = response.res.rooms
+    });
 });
 </script>
 
