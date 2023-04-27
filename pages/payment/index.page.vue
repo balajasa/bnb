@@ -186,6 +186,7 @@ const order = ref({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
+
 .payment
   max-width: 600px
   padding: 10px 15px
@@ -246,4 +247,28 @@ const order = ref({
     justify-content: space-between
   &.info--right
     justify-content: right
+
+.payment-choice-accept
+  margin-bottom: 30px
+
+.payment-price-row,
+.payment-choice-checkout
+  display: flex
+  justify-content: space-between
+
+.btn
+  &.btn--prev,
+  &.btn--main
+    background: none
+    border: none
+  &.btn--main
+    background-size: 200% 200%
+    transition: opacity 1.25s
+    background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%)
+    background-image: radial-gradient( circle at center,#FF385C 0%,#e61e4d 27.5%,#e31c5f 40%,#d70466 57.5%,#bd1e59 75%,#bd1e59 100% )
+    color: white
+    width: 60%
+    height: 48px
+    border-radius: 8px
+    font-size: 17px
 </style>
