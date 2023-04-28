@@ -161,18 +161,19 @@
         </ul>
       </div>
       <div class="payment-choice-accept">口 我同意接受以上所述的預訂條款和條件</div>
+      {{order_id}}
       <div class="payment-choice-checkout">
         <button class="btn btn--prev">上一步</button>
-        <button class="btn btn--main">送出訂單</button>
+        <button class="btn btn--main" @click="sendOrder()">送出訂單</button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 
-const order = ref({
+let order = ref({
   customer_name: ref(''),
   customer_tel: ref(''),
   customer_email: ref(''),
@@ -180,6 +181,78 @@ const order = ref({
   start_date: ref(''),
   end_date: ref('')
 })
+
+let state = reactive({order_id: 0})
+let order_id = ref(0)
+
+// onMounted(() => {
+
+// })
+
+// Post formData
+function appendObjectToFormData(formData, object, parentKey = '') {
+  Object.keys(object).forEach(key => {
+    const value = object[key];
+    const newKey = parentKey ? `${parentKey}[${key}]` : key;
+
+    if (typeof value === 'object') {
+      appendObjectToFormData(formData, value, newKey);
+    } else {
+      formData.append(newKey, value);
+    }
+  });
+}
+
+
+// sendOrder
+function sendOrder() {
+  const order_mock = {
+    "customer_name": "MiMiYaYa",
+    "start_date": "2023-04-03",
+    "customer_memo": "nono",
+    "customer_email": "abc123@gmail.com",
+    "customer_tel": "0922222222",
+    "end_date": "2023-04-05",
+    "orders": [
+    {
+        "room_id": "1651127002029101000",
+        "origin_price": 800,
+        "add_people": 2,
+        "night_out": true,
+        "discount_price": 400
+    },
+    {
+        "room_id": "1651127002029101000",
+        "origin_price": 800,
+        "add_people": 2,
+        "night_out": false,
+        "discount_price": 1000
+    }
+    ],
+    "addon": [
+    {
+        "price": 111,
+        "rent_name": "睡袋",
+        "conunt": 2
+    }
+    ],
+    "total_price": 800
+  }
+
+  let formData = new FormData();
+  appendObjectToFormData(formData, order_mock);
+
+  fetch('http://35.221.193.60/mock/153/api/order', {
+  method: 'POST',
+  body: formData
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      order_id.value = data.res.order_id
+    })
+    .catch(error => console.log(error))
+}
 
 
 </script>
