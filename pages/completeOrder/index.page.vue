@@ -229,29 +229,11 @@
             <div class="add-date">
               <div class="txt-add-date">2023-07-11</div>
               <div class="add-num">
-                <span class="txt-add-num">1 人</span>
+                <span class="txt-add-num">2 人</span>
                 <span>TWD 200</span>
               </div>
             </div>
           </div>
-
-          <div class="add-detail">
-            <div class="add-box">
-              <div class="add-name">睡袋</div>
-              <div class="add-amount">
-                <label>總價：</label>
-                <div class="txt-amount"><span>TWD</span> 800</div>
-              </div>
-            </div>
-            <div class="add-date">
-              <div class="txt-add-date">2023-07-11</div>
-              <div class="add-num">
-                <span class="txt-add-num">1 人</span>
-                <span>TWD 200</span>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         <div class="cancellation-policy">
@@ -308,10 +290,33 @@
 
 
 
-    </div>
-  </footer>
-</div>
+      </div>
+    </footer>
+  </div>
 </template>
+
+<script>
+import { ref } from 'vue'
+import { onMounted } from "vue";
+
+
+let orderInfo = ref({})
+
+onMounted(() => {
+  const url = "http://35.221.193.60/mock/153/api/order_info/123123";
+  fetch(url, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      orderInfo.value = response.res.order
+    });
+});
+</script>
+
 
 <style lang="sass" scoped>
 .page-complete-order
@@ -421,6 +426,7 @@
   padding: 0 24px
   margin-bottom: 24px
   .info-group
+    width: 100%
     &:not(:first-child)
       padding-left: 24px
       border-left: 1px solid #e9edef
