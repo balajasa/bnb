@@ -6,18 +6,13 @@
     :modules="modules"
     class="mySwiper"
   >
-    <swiper-slide><img src="./pics/p1.jpeg" /></swiper-slide>
-    <swiper-slide><img src="./pics/p2.jpeg" /></swiper-slide>
-    <swiper-slide><img src="./pics/p4.jpeg" /></swiper-slide>
-    <swiper-slide><img src="./pics/p5.jpeg" /></swiper-slide>
-    <swiper-slide><img src="./pics/p7.jpeg" /></swiper-slide>
+    <swiper-slide v-for="(item, index) in data" :key="index"><img :src="`${domain}/${item}`"></swiper-slide>
   </swiper>
 </template>
 
-<script>
+<script lang="ts">
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
-
 import "swiper/css/pagination";
 export default {
   components: {
@@ -27,10 +22,22 @@ export default {
 };
 </script>
 
-<script setup>
-import { ref } from "vue";
+<script lang="ts" setup>
+import { ref, PropType } from "vue";
 import { Pagination } from "swiper";
 const modules = ref([Pagination]);
+
+const props = defineProps({
+  data: {
+    type: Array as PropType<String[]>,
+    default: [],
+  },
+  domain: {
+    type: String,
+    default: '',
+  },
+});
+
 </script>
 
 <style scoped>
