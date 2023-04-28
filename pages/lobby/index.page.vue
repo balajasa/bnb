@@ -4,7 +4,17 @@
     <LobbyCard class="lobby-card"
       v-for="card in cards"
       :key="card.card_id"
-      :data="card"/>
+      :data="card"
+      :isFavorite="true"/>
+
+    <!-- 這個是樣式範例 -->
+    <!-- 1. 金額api回來前不顯示（從另一支api來的） -->
+    <!-- 2. 圖片錯誤時顯示替代文字跟灰底 -->
+    <LobbyCard class="lobby-card"
+      v-for="card in cards"
+      :key="card.card_id"
+      :data="{...card, price: 0, img: ''}"
+      :isFavorite="false"/>
   </div>
 </template>
 

@@ -1,29 +1,39 @@
 <template>
   <div class="card">
-    <a href="" class="card-link">
+    <Link :href="`/infopage/${props.data.account}`" class="card-link">
       <div class="card-imgs">
-        <img class="card-img" :src="props.data.img"/>
+        <img class="card-img"
+          :src="props.data.img"
+          :alt="props.data.full_name"
+          :title="props.data.full_name" />
       </div>
       <div class="card-info">
-        <p>{{ props.data.full_name }}</p>
+        <p class="card-info-title">
+          {{ props.data.full_name }}
+        </p>
         <p v-if="props.data.price">
           每晚 ${{ props.data.price }} TWD
         </p>
       </div>
-      <button class="card-favorite"></button>
-    </a>
+      <!-- click.prevent 防止冒泡 -->
+      <button class="card-favorite" @click.prevent="">
+        <svg class="card-favorite-svg" :class="{ 'is-active': props.isFavorite }" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false">
+          <path class="card-favorite-path" d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"></path>
+        </svg>
+      </button>
+    </Link>
   </div>
 </template>
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import { ILobbyCard } from './CardType';
+import Link from "../../renderer/Link.vue";
 
-const props = defineProps<{data: ILobbyCard}>();
-
-setTimeout(() => {
-  console.log(props.data)
-}, 1000);
+const props = defineProps<{
+  data: ILobbyCard
+  isFavorite: boolean
+}>();
 </script>
 
 <style lang="sass" scoped>
@@ -34,7 +44,7 @@ setTimeout(() => {
   padding: 12px
 
 .card-link
-  text-decoration: none
+  padding: 0
 
 .card-imgs
   position: relative
@@ -42,7 +52,8 @@ setTimeout(() => {
   height: 0
   padding: 50% 0
   margin-bottom: 12px
-  background-color: red
+  background-color: #DDDDDD
+  box-shadow: inset 0 0 10px #bbbbbb
   border-radius: 12px
   overflow: hidden
 
@@ -58,6 +69,11 @@ setTimeout(() => {
   color: #222222
   font-size: 15px
   font-weight: 600
+
+.card-info-title
+  max-width: 100%
+  white-space: nowrap
+  overflow: hidden
   text-overflow: ellipsis
 
 .card-favorite
@@ -72,22 +88,18 @@ setTimeout(() => {
   border: none
   outline: none
   background-color: transparent
+.card-favorite-svg
+  display: block
+  fill: rgba(0, 0, 0, 0.5)
+  height: 24px
+  width: 24px
+  stroke: white
+  stroke-width: 2
+  overflow: visible
+  &.is-active
+    fill: rgba(220, 20, 60, 1)
 
-  &::before, &::after
-    content: ''
-    position: absolute
-    top: 50%
-    left: 50%
-    height: 86%
-    width: 50%
-    background-color: #eee
-    border-radius: 20px 20px 2px 2px
-    transform-origin: center 75%
-
-  &::before
-    transform: translate(-50%, -80%) rotate(45deg)
-
-  &::after
-    transform: translate(-50%, -80%) rotate(-45deg)
+.card-favorite-path
+  stroke: white
 
   </style>
