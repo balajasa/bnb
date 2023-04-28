@@ -2,32 +2,30 @@
   <div class="card">
     <a href="" class="card-link">
       <div class="card-imgs">
-        <div class="card-img"></div>
-        <div class="card-img"></div>
-        <div class="card-img"></div>
-        <div class="card-img"></div>
+        <img class="card-img" :src="props.data.img"/>
       </div>
       <div class="card-info">
-        <p>Lonavla、印度</p>
-        <p>每晚 $3,847 TWD</p>
+        <p>{{ props.data.full_name }}</p>
+        <p v-if="props.data.price">
+          每晚 ${{ props.data.price }} TWD
+        </p>
       </div>
       <button class="card-favorite"></button>
     </a>
   </div>
 </template>
 
-<script setup>
-// import { ref } from 'vue'
+<script setup lang="ts">
+import { defineProps } from 'vue'
+import { ILobbyCard } from './CardType';
 
-defineProps({
-  card: String,
-})
+const props = defineProps<{data: ILobbyCard}>();
 
-// const msg = ref('Hello World!')
-
+setTimeout(() => {
+  console.log(props.data)
+}, 1000);
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
 .card
   box-sizing: border-box
@@ -39,6 +37,7 @@ defineProps({
   text-decoration: none
 
 .card-imgs
+  position: relative
   width: 100%
   height: 0
   padding: 50% 0
@@ -46,6 +45,12 @@ defineProps({
   background-color: red
   border-radius: 12px
   overflow: hidden
+
+.card-img
+  position: absolute
+  top: 0
+  left: 0
+  height: 100%
 
 .card-info
   line-height: 20px
@@ -86,4 +91,3 @@ defineProps({
     transform: translate(-50%, -80%) rotate(-45deg)
 
   </style>
-  
