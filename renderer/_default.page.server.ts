@@ -1,6 +1,6 @@
 export { render }
 // See https://vite-plugin-ssr.com/data-fetching
-export const passToClient = ['pageProps', 'urlPathname']
+export const passToClient = ['pageProps', 'urlPathname', 'routeParams', 'documentProps', 'initialStoreState']
 
 import { renderToString as renderToString_ } from '@vue/server-renderer'
 import type { App } from 'vue'

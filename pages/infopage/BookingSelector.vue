@@ -3,8 +3,8 @@
     <div class="selector-title">訂房日期</div>
     <div class="selector">2023/04/29 - 2023/05/04</div>
 
-    <div class="selector-title">人數</div>
-    <div class="selector">2成人, 0孩童, 0嬰幼兒</div>
+    <!-- <div class="selector-title">人數</div>
+    <div class="selector">2成人, 0孩童, 0嬰幼兒</div> -->
   </div>
 </template>
 

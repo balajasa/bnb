@@ -1,3 +1,4 @@
+import { createPinia } from 'pinia'
 import { createSSRApp, defineComponent, h } from 'vue'
 import PageShell from './PageShell.vue'
 import { setPageContext } from './usePageContext'
@@ -24,6 +25,9 @@ function createApp(Page: Component, pageProps: PageProps | undefined, pageContex
 
   // Make pageContext available from any Vue component
   setPageContext(app, pageContext)
+
+  const store = createPinia()
+  app.use(store)
 
   return app
 }

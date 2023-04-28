@@ -1,32 +1,41 @@
 <template>
   <div class="main-title">碎石區營地</div>
   <!-- 輪播 -->
-  <div class="temp-carousel">(圖片預留空間)</div>
+  <Carousel :data="data.images" :domain="'./pages/infopage/pics'" />
 
   <div class="basic-info">
-    <div>USD 30.38起</div>
+    <div>TWD {{data.price}}起</div>
     <div>床型</div>
-    <div>自備帳篷 X 1</div>
+    <div>{{data.bed}}</div>
     <div>人數限制</div>
-    <div>4人</div>
+    <div>{{data.max}}人</div>
     <div>坪數</div>
-    <div>40 平方公尺</div>
-
-    <div>床型</div>
-    <div class="">設施</div>
-    <div class="">共用花園</div>
-    <div class="">共用浴室</div>
-    <div class="">吹風機</div>
-    <div class="">洗髮精</div>
+    <div>{{data.size}}</div>
+    <div>設施</div>
+    {{data.facilities}}
   </div>
   <hr />
   <div class="detail">
     <h3>官網優惠預訂價格</h3>
-    ...
+    <div v-html="description"></div>
   </div>
 </template>
 
-<script setup></script>
+<script lang="ts" setup>
+import Carousel from "./Carousel.vue";
+import { computed, PropType } from "vue";
+import { IRoom } from "./RoomType"
+
+const props = defineProps({
+  data: {
+    type: Object as PropType<IRoom>,
+    default: {},
+  },
+});
+const description = computed(() => {
+  return props.data.description.split(/\\r|\\n/g).join('<br/>')
+});
+</script>
 
 <style>
 .main-title {

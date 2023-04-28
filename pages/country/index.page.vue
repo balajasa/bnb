@@ -4,9 +4,10 @@
       <span class="title_choose" v-for="item of choose" :key="item">{{ item }}</span>
     </div>
     <div class="country_box">
-      <div class="country_place">
+
+      <div class="country_place" v-if="iswayopen ">
         <div class="country_where">想去哪？</div>
-        <div class="country_search">搜尋目的地</div>
+        <input class="country_search" type="text" placeholder="搜尋目的地">
         <div class="country_banner">
           <div class="imageBox" v-for="item of wayItem" :key="item">
             <div class="imageBox_image"></div>
@@ -15,20 +16,40 @@
 
         </div>
       </div>
-      <div class="country_date">
+      <div class="country_date" @click="setDefault(); iswayopen= true;" v-if="!iswayopen ">
+        <div class="date">地點</div>
+        <div class="addData">隨心所欲</div>
+      </div>
+      <div class="country_date" @click="setDefault();  isgoopen= true;" v-if="!isgoopen ">
         <div class="date">日期</div>
         <div class="addData">新增日期</div>
       </div>
-      <div class="country_date">
+      <div class="country_place" v-if="isgoopen ">
+        <div class="country_where">何時出發？</div>
+      </div>
+      <div class="country_date" @click="setDefault(); ispeopleopen= true;" v-if="!ispeopleopen ">
         <div class="date">旅客</div>
         <div class="addData">新增人數</div>
+      </div>
+      <div class="country_place" v-if="ispeopleopen ">
+        <div class="country_where">有幾個人？</div>
+        <div class="country_people">
+          <div class="country_text">
+            <div class="people_number">成人</div>
+            <div class="people_info">滿13歲</div>
+          </div>
+          <div class="country_add">0</div>
+        </div>
       </div>
     </div>
 
   </div>
+  <div class="country_footer">
+    <div class="clearButton">清除全部</div>
+    <div class="searchButton">搜尋</div>
+  </div>
 
 </template>
-
 <script setup>
 import { ref } from 'vue'
 
@@ -36,6 +57,19 @@ const choose = ref(['住宿', '體驗'])
 const waynumber = ref(['','','','','','','','',''])
 const wayItem = ref(['隨心所欲', '歐洲', '英國', '東南亞', '義大利', '中東', '阿拉伯聯合大公園', '美國', '印尼'])
 
+const iswayopen = ref(false)
+const isgoopen = ref(false)
+const ispeopleopen = ref(false)
+
+const iswaytitleclose = ref(true)
+const isgotitleclose = ref(true)
+const ispeopletitleclose = ref(true)
+
+function setDefault() {
+  iswayopen.value = false
+  isgoopen.value = false
+  ispeopleopen.value = false
+}
 </script>
 
 <style lang="sass" scoped>
@@ -78,6 +112,8 @@ const wayItem = ref(['隨心所欲', '歐洲', '英國', '東南亞', '義大利
   border-radius: 24px
   background-color: #ffffff
   padding: 24px
+  margin: 10px 0
+
 
 .country_date
   display: flex
@@ -93,6 +129,9 @@ const wayItem = ref(['隨心所欲', '歐洲', '英國', '東南亞', '義大利
 .country_where
   font-size: 22px
 
+.country_people
+  display: flex
+
 .country_search
   margin-top: 16px
   font-size: 14px
@@ -107,6 +146,7 @@ const wayItem = ref(['隨心所欲', '歐洲', '英國', '東南亞', '義大利
   border-radius: 12px
   font-size: 14px
   color: #5b5b5b
+  width: 100%
 .country_banner
   margin: 12px -24px 0 -24px
   display: flex
@@ -126,6 +166,13 @@ const wayItem = ref(['隨心所欲', '歐洲', '英國', '東南亞', '義大利
   text-overflow: ellipsis
   white-space: nowrap
 
+.country_footer
+  background-color: #ffffff80
+  width: 100%
+  padding: 12px 24px
+  display: flex
+  justify-content: space-between
+  border-top: 1px solid #0000000d
 @keyframes title_choose_animation
   0%
     opacity: 0
