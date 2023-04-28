@@ -1,4 +1,7 @@
 {
+  "imports": {
+    "@/*": "./*.ts"
+  },
   "scripts": {
     "start": "npm run server",
     "prod": "npm run build && npm run server:prod",
@@ -15,7 +18,9 @@
     "@vue/server-renderer": "^3.2.33",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
+    "cross-fetch": "^3.1.5",
     "express": "^4.18.1",
+    "pinia": "^2.0.35",
     "sirv": "^2.0.2",
     "swiper": "^9.2.4",
     "ts-node": "^10.9.1",
