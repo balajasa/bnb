@@ -1,6 +1,6 @@
 <template>
   <div class="title-nav">
-    <div class="title">家霖農場 Garin Farm - 谷關露營</div>
+    <div class="title">{{props.full_name}}</div>
     <div class="functions">
       <img class="svgIcon" src="./pics/earth.svg" />
       <img class="svgIcon" src="./pics/currency.svg" />
@@ -8,7 +8,12 @@
   </div>
 </template>
 
-<script setup></script>
+<script lang="ts" setup>
+import { PropType } from "vue";
+import { IInfo } from "./types"
+
+const props = defineProps<{ data: IInfo }>();
+</script>
 
 <style>
 .title-nav {

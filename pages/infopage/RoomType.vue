@@ -1,7 +1,7 @@
 <template>
   <div class="main-title">碎石區營地</div>
   <!-- 輪播 -->
-  <Carousel :data="data.images" :domain="'./pages/infopage/pics'" />
+  <Carousel :data="data.images" :domain="'../pages/infopage/pics'" />
 
   <div class="basic-info">
     <div>TWD {{data.price}}起</div>
@@ -24,7 +24,7 @@
 <script lang="ts" setup>
 import Carousel from "./Carousel.vue";
 import { computed, PropType } from "vue";
-import { IRoom } from "./RoomType"
+import { IRoom } from "./types"
 
 const props = defineProps({
   data: {
