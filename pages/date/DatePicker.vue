@@ -17,7 +17,7 @@
 
           </div>
           <div class="datePicker-content">
-            <DateContent :value="month" :minDate="new Date()" v-for="month in show" :key="month"></DateContent>
+            <DateContent></DateContent>
           </div>
           <div class="moreDate">
             <button class="more-btn">載入更多日期</button>
