@@ -1,4 +1,5 @@
 <template>
+  total: {{ total }}
 <div class="page-complete-order">
   <div class="complete-container">
     <div class="status-title status-uncomplete">訂購尚未完成</div>
@@ -295,9 +296,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { ref } from 'vue'
 import { onMounted } from "vue";
+import { useOrderStore } from '@/stores/useOrder';
+import { storeToRefs } from 'pinia';
+
+const order = useOrderStore();
+const {  orders, total } = storeToRefs(order);
 
 
 let orderInfo = ref({})

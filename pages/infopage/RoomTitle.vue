@@ -1,6 +1,6 @@
 <template>
   <div class="title-nav">
-    <div class="title">{{props.full_name}}</div>
+    <div class="title">{{props.data.full_name}}</div>
     <div class="functions">
       <img class="svgIcon" src="./pics/earth.svg" />
       <img class="svgIcon" src="./pics/currency.svg" />

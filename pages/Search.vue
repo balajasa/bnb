@@ -28,6 +28,7 @@ defineProps({
   align-items: center
   display: flex
   margin: 0 auto
+  cursor: pointer
 
 .searchBox
   display: flex

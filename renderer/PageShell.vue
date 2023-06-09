@@ -1,12 +1,12 @@
 <template>
-  <Link href="/">Home</Link>
-  <Link href="/completeOrder">completeOrder</Link>
-  <Link href="/date">date</Link>
-  <Link href="/lobby">lobby</Link>
-  <Link href="/country">country</Link>
-  <Link href="/infopage">Info</Link>
-  <Link href="/payment">payment</Link>
-
+  <Link v-if="true" href="/">Home</Link>
+  <Link v-if="true" href="/completeOrder">completeOrder</Link>
+  <Link  v-if="true" href="/date">date</Link>
+  <Link  v-if="true" href="/lobby">lobby</Link>
+  <Link  v-if="true" href="/country">country</Link>
+  <Link  v-if="true" href="/infopage">Info</Link>
+  <Link  v-if="true" href="/payment">payment</Link>
+ 
   <slot />
 
   <!-- <div class="layout">
