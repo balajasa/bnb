@@ -31,7 +31,7 @@ const showSearch = ref<boolean>(false)
 // const router = useRouter();
 
 onMounted(() => {
-  const url = "http://127.0.0.1:8088/api/info";
+  const url = "http://34.31.125.18:8081/api/info";
   fetch(url, {
     method: "GET",
     headers: {

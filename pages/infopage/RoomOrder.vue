@@ -19,8 +19,7 @@ const {  orders, total } = storeToRefs(order);
 
 
 function gogo() {
-  console.log('gogog')
-  location.href = '/completeOrder'
+  location.href = '/payment'
 }
 </script>
 <style>

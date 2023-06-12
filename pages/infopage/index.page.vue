@@ -37,6 +37,9 @@ import RoomOrder from "./RoomOrder.vue";
 import { usePageContext } from "../../renderer/usePageContext";
 import { IInfo, IRoom, IRoomResp, ISearchPayload, IRoomStock } from "./types";
 import moment from "moment";
+import { useOrderStore } from "@/stores/useOrder";
+
+const order = useOrderStore();
 
 const pageContext: any = usePageContext();
 
@@ -55,7 +58,7 @@ const info = ref<IInfo>({
   ig_link: "",
 });
 const rooms = ref<IRoom[]>([]);
-const domain = "http://127.0.0.1:8088";
+const domain = "http://34.31.125.18:8081";
 const searchPayload = ref<ISearchPayload>({
   start: "",
   end: "",
@@ -64,6 +67,7 @@ const searchPayload = ref<ISearchPayload>({
 onMounted(() => {
   setInfo();
   setRooms();
+  order.clearOrders();
 });
 
 function handelSearch(payload: ISearchPayload) {

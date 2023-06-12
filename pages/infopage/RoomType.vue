@@ -2,7 +2,7 @@
   <template v-if="data.enough">
     <div class="main-title">{{ data.title }}</div>
     <!-- 輪播 -->
-    <Carousel :data="data.images" :domain="'http://127.0.0.1:8088'" />
+    <Carousel :data="data.images" :domain="'http://34.31.125.18:8081'" />
 
     <div class="basic-info">
       <div>TWD {{ data.price }}起</div>
@@ -59,7 +59,8 @@ watch(
       order.removeOrder(props.data.room_id);
     } else {
       order.updateOrder(props.data.room_id, {
-        price: count.value * props.data.totalPrice
+        count: count.value ,
+        room: props.data
       });
       console.log(props.data.room_id, {
         price: count.value * props.data.totalPrice

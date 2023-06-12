@@ -10,6 +10,10 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useOrderStore } from '@/stores/useOrder';
+
+const orderStore = useOrderStore();
 
 const emit = defineEmits(['search'])
 
@@ -21,6 +25,15 @@ onMounted(() => {
     start: start.value,
     end: end.value
   })
+  orderStore.updateOrderInfo({
+    start: start.value,
+    end: end.value,
+    people: {
+      adults: 2,
+      children: 0
+    }
+  })
+
 });
 </script>
 <style>
