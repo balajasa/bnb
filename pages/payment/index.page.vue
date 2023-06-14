@@ -293,11 +293,11 @@ import { storeToRefs } from "pinia";
 
 const orderStore = useOrderStore();
 const { orders, orderInfo, total } = storeToRefs(orderStore);
-
+const domain = "http://0.0.0.0:8088";
 const order = reactive({
-  customer_name: "",
-  customer_tel: "",
-  customer_email: "",
+  customer_name: "Ami",
+  customer_tel: "09262247",
+  customer_email: "gz2wa@gmail.com",
   customer_memo: "",
 });
 
@@ -320,6 +320,49 @@ function sendOrder() {
     alert('房間資訊錯誤');
     return;
   }
+  const orderdata = {
+    customer_name: order.customer_name,
+    customer_tel: order.customer_tel,
+    customer_email  : order.customer_email,
+    customer_memo: order.customer_memo,
+    start_date: orderInfo.value.start.replaceAll('/', '-'),
+    end_date: orderInfo.value.end.replaceAll('/', '-'),
+    total_price: orderInfo.value.totalPrice,
+    orders: Array.from(orders.value).map(data=> ({
+        room_id: data[1].room.room_id,
+        count: data[1].count,
+        origin_price: data[1].room.totalPrice,
+        add_people: 0,
+        night_out: true,
+        discount_price: data[1].room.totalPrice,
+      })),
+    addon: []
+  }
+  console.log(orderdata);
+  console.log(orders.value);
+
+
+  fetch(
+    `${domain}/api/order`,
+    {
+      method: "POST",
+      body: JSON.stringify(orderdata),
+      headers: {
+        Accept: "application/json",
+      },
+    }
+  )
+    .then((response) => response.json())
+    .then((response) => {
+      // setRoomStock(response, payload);
+
+      if(response.msg !== ""){
+        alert(response.msg);
+      } else {
+        console.log(response.res.order_id);
+      }
+    });
+
 }
 </script>
 
