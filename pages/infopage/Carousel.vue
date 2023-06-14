@@ -3,10 +3,11 @@
     :pagination="{
       type: 'fraction',
     }"
+    :enabled="true"
     :modules="modules"
     class="mySwiper"
   >
-    <swiper-slide v-for="(item, index) in data" :key="index"><img :src="`${domain}/${item}`"></swiper-slide>
+    <swiper-slide v-for="(item, index) in data" :key="index"><img :src="`${domain}/${item}`" class="img-rwd"></swiper-slide>
   </swiper>
 </template>
 
@@ -30,7 +31,7 @@ const modules = ref([Pagination]);
 const props = defineProps({
   data: {
     type: Array as PropType<String[]>,
-    default: [],
+    default: []
   },
   domain: {
     type: String,
@@ -40,45 +41,7 @@ const props = defineProps({
 
 </script>
 
-<style scoped>
-#app {
-  height: 100%;
-}
-html,
-body {
-  position: relative;
-  height: 100%;
-}
+<style scoped lang="sass">
+@import "@/styles/layout"
 
-body {
-  background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  padding: 0;
-}
-
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: scale-down;
-}
 </style>

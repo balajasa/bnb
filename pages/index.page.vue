@@ -15,7 +15,6 @@
         :isFavorite="true"/>
     </div>
   </div>
- 
 </template>
 
 <script setup lang="ts">
