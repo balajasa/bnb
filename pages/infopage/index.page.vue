@@ -2,26 +2,38 @@
   <!-- 標題 -->
   <room-title :data="info" />
   <!-- 照片輪播 -->
-  <Carousel :data="images" :domain="'../pages/infopage/pics'" />
+  <!-- <Carousel :data="images" :domain="'../pages/infopage/pics'" /> -->
+
   <!-- 訂房日期、人數選擇 -->
-  <BookingSelector @search="handelSearch" />
-  <!-- 快速連結：房型｜旅館資訊 -->
-  <div class="hotel-sub-nav">
-    <a href="#anchor-rooms" class="is-active">房型</a>
-    <a href="#anchor-intro">旅館資訊</a>
-  </div>
-  <!-- 房型 -->
-  <div class="room-container">
-    <div id="anchor-rooms">
-      <div v-for="room in rooms" :key="room.room_id">
-        <RoomType :data="room" />
+  <div class="info-wrapper">
+    <div class="container">
+      <BookingSelector @search="handelSearch" />
+      <!-- 快速連結：房型｜旅館資訊 -->
+      <div class="hotel-sub-nav">
+        <a href="#anchor-rooms" class="is-active">房型</a>
+        <a href="#anchor-intro">旅館資訊</a>
       </div>
     </div>
-    <div id="anchor-intro">
-      <Info :data="info"></Info>
+  </div>
+  <div class="container">
+    <div class="room-main">
+      <!-- 房型 -->
+      <div class="room-content">
+        <div id="anchor-rooms" class="rooms-area">
+          <div v-for="room in rooms" :key="room.room_id">
+            <RoomType :data="room" />
+          </div>
+        </div>
+        <div id="anchor-intro">
+          <Info :data="info"></Info>
+        </div>
+      </div>
+      <div class="order-content">
+        <RoomOrder></RoomOrder>
+      </div>
     </div>
   </div>
-  <RoomOrder></RoomOrder>
+
   <RoomFooter :data="info"></RoomFooter>
 </template>
 
@@ -165,30 +177,51 @@ function setRoomStock(response: any, payload: ISearchPayload) {
   });
 }
 </script>
-
 <style lang="sass" scoped>
+@import "@/styles/layout"
+
+.info-wrapper
+  box-shadow: 0 25px 40px -15px rgba(92,101,107,.2)
+  padding: 16px 0
+  margin-bottom: 40px
+  .container
+    display: flex
+    flex-direction: column
+    @media (min-width: 992px)
+      align-items: flex-end
+      flex-direction: row
+
 
 .hotel-sub-nav
-  width: 100%
-  display: flex
+  display: inline-flex
   align-items: center
   justify-content: space-around
-  box-shadow: 0 25px 40px -15px rgba(92,101,107,.2)
-  padding-bottom: 1rem
-  margin-bottom: 2.5rem
   a
     margin-right: 2rem
     padding-top: 0.5rem
     padding-bottom: 0.5rem
     color: #686e74
     text-decoration: none
+    border-bottom: 2px solid #fff
     &.is-active
-      border-bottom-width: 2px
-      border-color: #a3abb2
-.room-container
-  width: 100%
-  margin-right: auto
-  margin-left: auto
-  padding-right: 1rem
-  padding-left: 1rem
+      border-bottom: 2px solid #a3abb2
+
+.room-main
+  display: flex
+  justify-content: space-between
+
+.rooms-area
+  padding: 0 16px 24px 16px
+  border-bottom: 1px solid #e9edef
+
+.room-content
+  display: inline-block
+  max-width: calc(100% - 375px)
+
+.order-content
+    width: 100%
+    padding-left: 16px
+    @media (min-width: 992px)
+      max-width: 375px
+      display: inline-block
 </style>

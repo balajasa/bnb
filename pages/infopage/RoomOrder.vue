@@ -2,11 +2,9 @@
   <template v-if="orders.size > 0">
     <div class="room-order">
       <div>訂單總價</div>
-      <div>TWD ${{ total }}</div> 
+      <div>TWD ${{ total }}</div>
       <button @click="gogo()">下一步</button>
-      
     </div>
-   
   </template>
 </template>
 
