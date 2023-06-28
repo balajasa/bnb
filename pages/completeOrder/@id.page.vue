@@ -309,7 +309,7 @@ const {  orders, total } = storeToRefs(order);
 let orderInfo = ref({})
 
 onMounted(() => {
-  const url = "http://35.221.193.60/mock/153/api/order_info/123123";
+  const url = "http://0.0.0.0:8088/api/order_info/1668864701175435264";
   fetch(url, {
     method: "GET",
     headers: {
