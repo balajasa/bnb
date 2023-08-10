@@ -5,10 +5,11 @@
         <div class="dateSelector-title">何時出發？</div>
         <div class="datePicker">
           <div class="datePicker-tabs">
-              <div class="tablist">
-                <button class="tab-btn">選擇日期</button>
-              </div>
+            <div class="tablist">
+              <button class="tab-btn">選擇日期</button>
+            </div>
           </div>
+
 
           <div class="datePicker-title">
             <div class="datePicker-week">
@@ -17,40 +18,90 @@
 
           </div>
           <div class="datePicker-content">
-            <DateContent></DateContent>
+            <!-- <DateContent @get_moreMonth="moreMonth = $event"></DateContent> -->
+            <DateNewMoment
+              @getMoreMonth="moreMonth = $event"
+              @emitChooseDate="getChooseDate"
+              :duringDate="duringDate"
+              :setouo="setouo"
+              :clearouo="clearouo"
+              >
+            </DateNewMoment>
+
+
           </div>
-          <div class="moreDate">
-            <button class="more-btn">載入更多日期</button>
+          <div class="dateTool">
+            <div class="ooo">{{ duringDate[0] }} 到 {{ duringDate[1] }}</div>
           </div>
+          <footer class="bottomTool">
+            <div class="reset-btn" @click="resetData">重設</div>
+            <button class="continue-btn">繼續</button>
+          </footer>
         </div>
       </div>
     </div>
   </div>
-
 </template>
 
-<script setup>
-  import DateContent from './DateContent.vue'
-  import { ref } from 'vue'
+<script>
+import DateContent from './DateContent.vue'
+import DateNewMoment from './DateNewMoment.vue'
 
-  const date = new Date('2023-04-30');
-  const weekly = ['日', '一', '二', '三', '四', '五', '六']
-  const show = [0,1,2,3].map(i => getMonthOffset(date, i))
 
-  function getMonthOffset(date, offset) {
-    const d = new Date(date);
-    const currentMonth = d.getMonth();
-    d.setDate(1);
-    d.setMonth(currentMonth + offset);
-    return d
+export default {
+  components: {
+    DateContent,
+    DateNewMoment
+  },
+  data() {
+    return {
+      weekly: [],
+      addMonth: 3,
+      moreMonth: null,
+      duringDate: [],
+      ouo: 'qqq',
+    }
+  },
+  created() {
+    this.weekly = ['日', '一', '二', '三', '四', '五', '六']
+  },
+
+  methods: {
+    addMoreMonth() {
+      if(this.moreMonth) {
+        this.moreMonth();
+      }
+    },
+    getChooseDate(aaa) {
+      console.log('aaa', aaa)
+      this.duringDate = aaa
+    },
+    resetData() {
+      this.duringDate = []
+      this.clearouo();
+    },
+    clearouo() {
+      this.duringDate = []
+      console.log('duringDate', this.duringDate)
+    },
+    setouo(oxxx) {
+      this.duringDate = oxxx
+      console.log('= =', oxxx)
+    },
   }
+
+}
+
+
 </script>
+
 
 <style lang="sass" scoped>
 .dateSelector
   width: 100%
   background: #fff
-  border-radius: 32px
+  border-top-left-radius: 32px
+  border-top-right-radius: 32px
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.15)
   margin-top: 12px
   padding: 24px
@@ -61,17 +112,20 @@
   overflow-y: auto
   overscroll-behavior: contain
 
+.datePicker
+  width: 100%
+  height: 100%
+
 .datePicker-content
-  height: 500px
+  height: 350px
   overflow-y: scroll
   overflow-x: hidden
   padding: 0 13px
+  display: flex
+  justify-content: center
 
 .dateSelector-title
   font-size: 22px
-
-.datePicker
-  width: 100%
 
 .datePicker-tabs
   display: flex
@@ -135,9 +189,31 @@
   line-height: 16px
   margin-bottom: 6px
 
-.moreDate
-  margin: 16px
-  // width: 100%
+.dateTool
+  border-top: 1px solid #EBEBEB
+  padding: 12px 24px
+
+.bottomTool
+  width: 100%
+  display: flex
+  justify-content: space-between
+  align-items: center
+  border-top: 1px solid #EBEBEB
+  padding: 12px 24px
+
+.reset-btn
+  color: #222222
+  transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1)
+  border-bottom: 1px solid #222222
+  background: transparent
+  cursor: pointer
+
+.continue-btn
+  color: #ffffff
+  background: #222222
+  padding: 14px 24px
+  border: none
+  border-radius: 8px
 
 .more-btn
   width: 100%

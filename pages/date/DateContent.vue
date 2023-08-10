@@ -1,20 +1,19 @@
 <template>
   <section>
     <div class="wrap" v-for="(month, index) in months" :key="index">
-      <div class="datePicker-head" >
+      <div class="datePicker-head">
         <div class="year">{{ month.year }}年</div>
         <div class="month">{{ month.month }}月</div>
       </div>
-
       <div class="datePicker-box">
         <div class="week-content" v-for="(week, index) in month.weeks" :key="index">
           <div class="day" v-for="day in week" :key="day"
             :class="{
-              'is-start': startDay && startDay === day.number && monthIndex1 === month.month,
-              'is-end': startDay && endDay && endDay === day.number && monthIndex2 === month.month,
-              'is-disabled': isDisabled(day),
-              'is-range': isDateRange(month.year, month.month, day.number),
-              }" @click="selectDate(month.month, day)">
+            'is-start': startDay && startDay === day.number && monthIndex1 === month.month,
+            'is-end': startDay && endDay && endDay === day.number && monthIndex2 === month.month,
+            'is-disabled': isDisabled(day),
+            'is-range': isDateRange(month.year, month.month, day.number),
+          }" @click="selectDate(month.month, day)">
             {{ day.number }}
           </div>
         </div>
@@ -24,12 +23,10 @@
 </template>
 
 <script>
-
 export default {
-
+  emit: ['get_more_action'],
   data() {
     return {
-      days: ['日', '一', '二', '三', '四', '五', '六'],
       monthIndex1: 0,
       dayIndex1: 0,
       monthIndex2: 0,
@@ -43,9 +40,11 @@ export default {
       dates: [],
       rangeMonth: '',
       rangeDay: 0,
+      moreMonth: 0,
+      handleStartDate: null,
+      clickCount: 0,
     }
   },
-
   methods: {
     isDisabled(day) {
       const isNotToday = day.isYesterday === false || undefined
@@ -57,27 +56,21 @@ export default {
         if (this.startDay === null) {
           this.startDay = day.number
           this.dayIndex1 = day.number
+          console.log('this.dayIndex1', this.dayIndex1)
           this.monthIndex1 = month
-          console.log('startDay', this.monthIndex1)
+          this.startDate = this.convertTimestampToDate(day.timeStamp)
         } else if (this.endDay === null) {
           this.endDay = day.number
           this.dayIndex2 = day.number
           this.monthIndex2 = month
-          console.log('endDay', this.monthIndex2)
-        } else if (this.endDay > this.startDay) {
-          this.startDay = this.endDay
-          this.endDay = day.number
-          this.dayIndex2 = day.number
-          this.monthIndex2 = month
-        }
-
-        // startDay 和 endDay 裡面有沒有東西
-        if (this.startDay && !this.endDay) {
-          this.startDate = this.convertTimestampToDate(day.timeStamp)
-        }
-        if (this.startDay && this.endDay) {
           this.endDate = this.convertTimestampToDate(day.timeStamp)
+        } else if (this.clickCount === 2) {
+          this.startDay = null
+          this.endDay = null
+          this.clickCount = 0
+          this.dates = []
         }
+        this.clickCount++;
       }
     },
 
@@ -93,23 +86,32 @@ export default {
     isDateRange(year, month, day) {
       const date = `${year}/${month}/${day}`;
       let isRange = false;
-      const sliceDate = this.dates.slice(1 , -1)
+      const sliceDate = this.dates.slice(1, -1)
       if (sliceDate.indexOf(date) >= 0) {
         isRange = true;
       }
       return isRange;
     },
 
+    addMonth() {
+      this.moreMonth += 3;
+    }
+  },
+
+  watch: {
+    handleStartDate(newVal) {
+      this.startDate = null
+      console.log('handleStartDate', newVal)
+    }
   },
 
   mounted() {
-    this.$watch(() => [this.startDate, this.endDate], ([newStart, newEnd]) => {
-      console.log('newStart', newStart)
-      console.log('newEnd', newEnd)
-      if (newStart && newEnd) {
+    this.$watch(() => [this.startDate, this.endDate], ([newStartDate, newEndDate]) => {
+      // 如果取到兩個日期就計算兩個日期的區間
+      if (newStartDate && newEndDate) {
         const oneDay = 24 * 60 * 60 * 1000
-        const startTimestamp = Date.parse(newStart)
-        const endTimestamp = Date.parse(newEnd)
+        const startTimestamp = Date.parse(newStartDate)
+        const endTimestamp = Date.parse(newEndDate)
         const numDays = Math.round(Math.abs((startTimestamp - endTimestamp) / oneDay)) + 1
         const result = []
         for (let i = 0; i < numDays; i++) {
@@ -121,13 +123,13 @@ export default {
         this.dates = []
       }
     })
+
+    this.$emit('get_more_action', this.addMonth)
   },
-
-
   computed: {
     // 產生日曆
     months() {
-      const monthsCount = 10; // 設定月份數量
+      const monthsCount = 4 + this.moreMonth; // 設定月份數量
       const today = new Date(); // 取得當前日期
       const result = [];
       let currentMonth = today.getMonth();
@@ -156,6 +158,7 @@ export default {
           } else {
             days.push('');
           }
+
         }
 
         const weeks = [];
@@ -170,6 +173,7 @@ export default {
         });
         currentMonth++;
       }
+
       return result;
     }
   }
@@ -237,3 +241,68 @@ export default {
     width: 43px
     height: 43px
 </style>
+
+<!--
+                                     ....
+                                    W$$$$$u
+                                    $$$$F**+           .oW$$$eu
+                                    ..ueeeWeeo..      e$$$$$$$$$
+                                .eW$$$$$$$$$$$$$$$b- d$$$$$$$$$$W
+                    ,,,,,,,uee$$$$$$$$$$$$$$$$$$$$$ H$$$$$$$$$$$~
+                 :eoC$$$$$$$$$$$C""?$$$$$$$$$$$$$$$ T$$$$$$$$$$"
+                  $$$*$$$$$$$$$$$$$e "$$$$$$$$$$$$$$i$$$$$$$$F"
+                  ?f"!?$$$$$$$$$$$$$$ud$$$$$$$$$$$$$$$$$$$$*Co
+                  $   o$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+          !!!!m.*eeeW$$$$$$$$$$$f?$$$$$$$$$$$$$$$$$$$$$$$$$$$$$U
+          !!!!!! !$$$$$$$$$$$$$$  T$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+           *!!*.o$$$$$$$$$$$$$$$e,d$$$$$$$$$$$$$$$$$$$$$$$$$$$$$:
+          "eee$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$C
+         b ?$$$$$$$$$$$$$$**$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$!
+         Tb "$$$$$$$$$$$$$$*uL"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+          $$o."?$$$$$$$$F" u$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+           $$$$en ```    .e$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+            $$$B*  =*"?.e$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$F
+             $$$W"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+              "$$$o#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+             R: ?$$$W$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" :!i.
+              !!n.?$???""``.......,``````"""""""""""``   ...+!!!
+               !* ,+::!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*`
+               "!?!!!!!!!!!!!!!!!!!!~ !!!!!!!!!!!!!!!!!!!~`
+               +!!!!!!!!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!?!`
+             .!!!!!!!!!!!!!!!!!!!!!' !!!!!!!!!!!!!!!, !!!!
+            :!!!!!!!!!!!!!!!!!!!!!!' !!!!!!!!!!!!!!!!! `!!:
+         .+!!!!!!!!!!!!!!!!!!!!!~~!! !!!!!!!!!!!!!!!!!! !!!.
+        :!!!!!!!!!!!!!!!!!!!!!!!!!.`:!!!!!!!!!!!!!!!!!:: `!!+
+        "~!!!!!!!!!!!!!!!!!!!!!!!!!!.~!!!!!!!!!!!!!!!!!!!!.`!!:
+            ~~!!!!!!!!!!!!!!!!!!!!!!! ;!!!!~` ..eeeeeeo.`+!.!!!!.
+          :..    `+~!!!!!!!!!!!!!!!!! :!;`.e$$$$$$$$$$$$$u .
+          $$$$$$beeeu..  `````~+~~~~~" ` !$$$$$$$$$$$$$$$$ $b
+          $$$$$$$$$$$$$$$$$$$$$UU$U$$$$$ ~$$$$$$$$$$$$$$$$ $$o
+         !$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$. $$$$$$$$$$$$$$$~ $$$u
+         !$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$! $$$$$$$$$$$$$$$ 8$$$$.
+         !$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$X $$$$$$$$$$$$$$`u$$$$$W
+         !$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$! $$$$$$$$$$$$$".$$$$$$$:
+          $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  $$$$$$$$$$$$F.$$$$$$$$$
+          ?$$$$$$$$$$$$$$$$$$$$$$$$$$$$f $$$$$$$$$$$$' $$$$$$$$$$.
+           $$$$$$$$$$$$$$$$$$$$$$$$$$$$ $$$$$$$$$$$$$  $$$$$$$$$$!
+           "$$$$$$$$$$$$$$$$$$$$$$$$$$$ ?$$$$$$$$$$$$  $$$$$$$$$$!
+            "$$$$$$$$$$$$$$$$$$$$$$$$Fib ?$$$$$$$$$$$b ?$$$$$$$$$
+              "$$$$$$$$$$$$$$$$$$$$"o$$$b."$$$$$$$$$$$  $$$$$$$$'
+             e. ?$$$$$$$$$$$$$$$$$ d$$$$$$o."?$$$$$$$$H $$$$$$$'
+            $$$W.`?$$$$$$$$$$$$$$$ $$$$$$$$$e. "??$$$f .$$$$$$'
+           d$$$$$$o "?$$$$$$$$$$$$ $$$$$$$$$$$$$eeeeee$$$$$$$"
+           $$$$$$$$$bu "?$$$$$$$$$ 3$$$$$$$$$$$$$$$$$$$$*$$"
+          d$$$$$$$$$$$$$e. "?$$$$$:`$$$$$$$$$$$$$$$$$$$$8
+  e$$e.   $$$$$$$$$$$$$$$$$$+  "??f "$$$$$$$$$$$$$$$$$$$$c
+ $$$$$$$o $$$$$$$$$$$$$$$F"          `$$$$$$$$$$$$$$$$$$$$b.
+M$$$$$$$$U$$$$$$$$$$$$$F"              ?$$$$$$$$$$$$$$$$$$$$$u
+?$$$$$$$$$$$$$$$$$$$$F                   "?$$$$$$$$$$$$$$$$$$$$u
+ "$$$$$$$$$$$$$$$$$$"                       ?$$$$$$$$$$$$$$$$$$$$o
+   "?$$$$$$$$$$$$$F                            "?$$$$$$$$$$$$$$$$$$
+      "??$$$$$$$F                                 ""?3$$$$$$$$$$$$F
+                                                .e$$$$$$$$$$$$$$$$'
+                                               u$$$$$$$$$$$$$$$$$
+                                              `$$$$$$$$$$$$$$$$"
+                                               "$$$$$$$$$$$$F"
+                                                 ""?????""
+-->
