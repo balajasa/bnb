@@ -1,5 +1,5 @@
-export interface IRoom {
-  room_id: number;
+export interface IRoomResp {
+  room_id: string;
   title: string;
   total: number;
   remaining: number;
@@ -10,6 +10,10 @@ export interface IRoom {
   facilities: string;
   description: string;
   images: string[];
+}
+export interface IRoom extends IRoomResp {
+  enough: boolean;
+  totalPrice: number;
 }
 
 export interface IInfo {
@@ -23,4 +27,15 @@ export interface IInfo {
   fb_link:   string;
   line_link: string;
   ig_link:   string;
+}
+export interface ISearchPayload {
+  start: string 
+  end: string 
+}
+export interface IRoomStock {
+  date: string
+  price: number
+  remaining: number
+  room_id: string
+  total: number
 }

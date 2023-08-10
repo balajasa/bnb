@@ -1,6 +1,7 @@
 <template>
+  total: {{ total }}
 <div class="page-complete-order">
-  <div class="complete-container">
+  <div class="container">
     <div class="status-title status-uncomplete">訂購尚未完成</div>
     <div class="form-info order-status">
       <div class="form-content">
@@ -272,7 +273,7 @@
   </div>
 
   <footer class="footer">
-    <div class="footer-container">
+    <div class="container">
       <div class="footer-name">家霖農場 Garin Farm - 谷關露營</div>
       <div class="foonter-content">
         <a class="txt-contacts" href="http://maps.google.com/maps?q=42444台灣台中市和平區東關路一段台電巷122-2號" target="_blank">
@@ -295,15 +296,20 @@
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { ref } from 'vue'
 import { onMounted } from "vue";
+import { useOrderStore } from '@/stores/useOrder';
+import { storeToRefs } from 'pinia';
+
+const order = useOrderStore();
+const {  orders, total } = storeToRefs(order);
 
 
 let orderInfo = ref({})
 
 onMounted(() => {
-  const url = "http://35.221.193.60/mock/153/api/order_info/123123";
+  const url = "http://0.0.0.0:8088/api/order_info/1668864701175435264";
   fetch(url, {
     method: "GET",
     headers: {
@@ -319,22 +325,10 @@ onMounted(() => {
 
 
 <style lang="sass" scoped>
+@import "@/styles/layout"
+
 .page-complete-order
   margin-top: 40px
-.complete-container,.footer-container
-  width: 100%
-  margin-right: auto
-  margin-left: auto
-  padding-right: 16px
-  padding-left: 16px
-  @media (min-width: 576px)
-    max-width:576px
-  @media (min-width: 768px)
-    max-width:768px
-  @media (min-width: 992px)
-    max-width:992px
-  @media (min-width: 1200px)
-    max-width:1200px
 
 .status-title
   font-size: 24px

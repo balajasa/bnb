@@ -45,15 +45,17 @@
 
   </div>
   <div class="country_footer">
-    <div class="clearButton">清除全部</div>
-    <div class="searchButton">搜尋</div>
+    <div class="clearButton"  @click="clean()">清除全部</div>
+    <div class="searchButton"  @click="search()">搜尋</div>
   </div>
 
 </template>
 <script setup>
 import { ref } from 'vue'
 
-const choose = ref(['住宿', '體驗'])
+const emit = defineEmits(['search'])
+
+const choose = ref(['住宿'])
 const waynumber = ref(['','','','','','','','',''])
 const wayItem = ref(['隨心所欲', '歐洲', '英國', '東南亞', '義大利', '中東', '阿拉伯聯合大公園', '美國', '印尼'])
 
@@ -69,6 +71,12 @@ function setDefault() {
   iswayopen.value = false
   isgoopen.value = false
   ispeopleopen.value = false
+}
+function  clean() {
+  emit('search');
+}
+function  search() {
+  emit('search');
 }
 </script>
 

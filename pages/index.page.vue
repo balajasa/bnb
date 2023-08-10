@@ -1,20 +1,19 @@
 <template>
-  <Search />
-  <div class="lobby-cards">
-    <LobbyCard class="lobby-card"
-      v-for="card in cards"
-      :key="card.card_id"
-      :data="card"
-      :isFavorite="true"/>
-
-    <!-- 這個是樣式範例 -->
-    <!-- 1. 金額api回來前不顯示（從另一支api來的） -->
-    <!-- 2. 圖片錯誤時顯示替代文字跟灰底 -->
-    <LobbyCard class="lobby-card"
-      v-for="card in cards"
-      :key="card.card_id"
-      :data="{...card, price: 0, img: ''}"
-      :isFavorite="false"/>
+  <div v-show="showSearch">
+    <Country @search="search($event)"></Country>
+  </div>
+  <div v-show="!showSearch">
+    <Search @click="toggleSearch"/>
+    <div class="lobby-cards">
+      <!-- 這個是樣式範例 -->
+      <!-- 1. 金額api回來前不顯示（從另一支api來的） -->
+      <!-- 2. 圖片錯誤時顯示替代文字跟灰底 -->
+      <LobbyCard class="lobby-card"
+        v-for="card in cards"
+        :key="card.account"
+        :data="card"
+        :isFavorite="true"/>
+    </div>
   </div>
 </template>
 
@@ -23,11 +22,15 @@ import { ref, onMounted } from 'vue'
 import { ILobbyCard, ParseLobbyCard } from './CardType';
 import LobbyCard from './LobbyCard.vue'
 import Search from './Search.vue'
+import Country from './country/index.page.vue'
 
 let cards = ref<ILobbyCard[]>([])
+const showSearch = ref<boolean>(false)
+//router
+// const router = useRouter();
 
 onMounted(() => {
-  const url = "http://35.221.193.60/mock/153/api/info";
+  const url = "http://34.31.125.18:8081/api/info";
   fetch(url, {
     method: "GET",
     headers: {
@@ -39,6 +42,15 @@ onMounted(() => {
       cards.value = ParseLobbyCard(response.res.data)
     });
 });
+
+function toggleSearch() {
+  // router.push('country');
+  showSearch.value = !showSearch.value
+}
+
+function search(data: any){
+  showSearch.value = !showSearch.value
+}
 </script>
 
 <style lang="sass" scoped>

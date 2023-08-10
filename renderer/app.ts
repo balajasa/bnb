@@ -22,12 +22,11 @@ function createApp(Page: Component, pageProps: PageProps | undefined, pageContex
   })
 
   const app = createSSRApp(PageWithLayout)
-
+  
   // Make pageContext available from any Vue component
   setPageContext(app, pageContext)
 
   const store = createPinia()
   app.use(store)
-
   return app
 }
