@@ -1,0 +1,1 @@
+import{E as o}from"./chunk-52a8d9e0.js";const e=Symbol();function a(){const t=o(e);if(!t)throw new Error("setPageContext() not called in parent");return t}function s(t,n){t.provide(e,n)}export{s,a as u};
